@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./details.css" />
+    <title>Yoruba Aloud | Admin Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.ico" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+      <a href="dashboard.html" class="brand">
+        <i class="bx bxl-ok-ru"></i><span>Yoruba Aloud</span>
+      </a>
+      <ul class="side-menu top">
+        <li>
+          <a href="dashboard.html">
+            <i class="bx bx-home"></i> <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="category.html" class="active">
+            <i class="bx bx-category"></i>
+            <span class="text">Categories</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-book-content"></i>
+            <span class="text">Learning Materials</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-certification"></i>
+            <span class="text">Quiz</span>
+          </a>
+        </li>
+        <li>
+          <a href="admin.html">
+            <i class="bx bxs-user-detail"></i>
+            <span class="text">Admin Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout" onclick="logout()">
+            <i class="bx bxs-log-out-circle"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+      <!-- NAVBAR -->
+      <nav>
+        <i class="bx bx-menu"></i>
+        <div id="admin-categoryname">
+          <div class="user_name">
+            Username:
+            <span class="user-admin" id="adminUserName"></span>
+          </div>
+        </div>
+      </nav>
+      <!-- NAVBAR -->
+
+      <!-- MAIN -->
+      <main>
+        <!-- SUB CATEGORY FORM -->
+        <div id="subcategory__container">
+          <form>
+            <p>
+              <label for="categories">Sub Category Name</label>
+              <input
+                id="createSubCategoryName"
+                type="text"
+                placeholder="Enter the category name"
+              />
+            </p>
+            <p>
+              <label for="categories">Sub Category Image</label>
+              <input id="createSubCategoryImage" type="file" />
+            </p>
+            <button
+              onclick="createSubCategory(event)"
+              id="createSubCategoryBtn"
+            >
+              Create Sub-Category
+            </button>
+          </form>
+        </div>
+        <!-- SUBCATEGORY LIST -->
+        <div id="subcategorylist"></div>
+        <!-- UPDATESUBCATEGORY MODAL -->
+        <div class="subcategory_modal" id="subcategory_modal">
+          <div id="updateSubCategory">
+            <h3>Update Subcategory</h3>
+            <form>
+              <p>
+                <label for="categories">Update Sub-Category Name</label>
+                <input
+                  id="updateSubCategoryName"
+                  type="text"
+                  placeholder="Enter the category name"
+                />
+              </p>
+              <p>
+                <label for="categories">Update Sub-Category Image</label>
+                <input id="updateSubCategoryImage" type="file" />
+              </p>
+              <button
+                id="updateSubCategoryBtn"
+                onclick="updateSubcategory(event)"
+              >
+                Update Sub-Category
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- //Page modal -->
+        <div id="pageModal">
+          <svg
+            class="pl"
+            viewBox="0 0 200 200"
+            width="200"
+            height="200"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="pl-grad1" x1="1" y1="0.5" x2="0" y2="0.5">
+                <stop offset="0%" stop-color="#808080" />
+                <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+              </linearGradient>
+              <linearGradient id="pl-grad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#808080" />
+                <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+              </linearGradient>
+            </defs>
+            <circle
+              class="pl__ring"
+              cx="100"
+              cy="100"
+              r="82"
+              fill="none"
+              stroke="url(#pl-grad1)"
+              stroke-width="36"
+              stroke-dasharray="0 257 1 257"
+              stroke-dashoffset="0.01"
+              stroke-linecap="round"
+              transform="rotate(-90,100,100)"
+            />
+            <line
+              class="pl__ball"
+              stroke="url(#pl-grad2)"
+              x1="100"
+              y1="18"
+              x2="100.01"
+              y2="182"
+              stroke-width="36"
+              stroke-dasharray="1 165"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </main>
+      <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./details.js"></script>
+  </body>
+</html>

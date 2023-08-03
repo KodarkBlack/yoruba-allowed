@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./categories.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Yoruba Aloud | Admin Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.ico" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+      <a href="dashboard.html" class="brand">
+        <i class="bx bxl-ok-ru"></i><span>Yoruba Aloud</span>
+      </a>
+      <ul class="side-menu top">
+        <li>
+          <a href="dashboard.html">
+            <i class="bx bx-home"></i> <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="category.html">
+            <i class="bx bx-category"></i>
+            <span class="text">Categories</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-book-content"></i>
+            <span class="text">Learning Materials</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-certification"></i>
+            <span class="text">Quiz</span>
+          </a>
+        </li>
+        <li>
+          <a href="admin.html" class="active">
+            <i class="bx bxs-user-detail"></i>
+            <span class="text">Admin Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout" onclick="logout()">
+            <i class="bx bxs-log-out-circle"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+      <!-- NAVBAR -->
+      <nav>
+        <i class="bx bx-menu"></i>
+        <div class="flex items-center space-x-28">
+          <div>
+            <span class="font-semibold text-[#4594e1]">Admin Name:</span>
+            <span class="text-base" id="adminUserName"></span>
+          </div>
+          <div>
+            <span class="font-semibold text-[#4594e1]">Admin Email:</span>
+            <span id="adminUserEmail"></span>
+          </div>
+        </div>
+      </nav>
+      <!-- NAVBAR -->
+
+      <!-- MAIN -->
+      <main>
+        <!-- //Page modal -->
+        <div id="pageModal">
+          <svg
+            class="pl"
+            viewBox="0 0 200 200"
+            width="200"
+            height="200"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="pl-grad1" x1="1" y1="0.5" x2="0" y2="0.5">
+                <stop offset="0%" stop-color="#808080" />
+                <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+              </linearGradient>
+              <linearGradient id="pl-grad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#808080" />
+                <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+              </linearGradient>
+            </defs>
+            <circle
+              class="pl__ring"
+              cx="100"
+              cy="100"
+              r="82"
+              fill="none"
+              stroke="url(#pl-grad1)"
+              stroke-width="36"
+              stroke-dasharray="0 257 1 257"
+              stroke-dashoffset="0.01"
+              stroke-linecap="round"
+              transform="rotate(-90,100,100)"
+            />
+            <line
+              class="pl__ball"
+              stroke="url(#pl-grad2)"
+              x1="100"
+              y1="18"
+              x2="100.01"
+              y2="182"
+              stroke-width="36"
+              stroke-dasharray="1 165"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <!-- //Update Profile -->
+        <div
+          class="w-full sm:w-[65%] m-auto rounded-2xl shadow-xl mb-12"
+          id="adminProfile"
+        >
+          <div id="adminForm">
+            <h2
+              class="p-5 bg-[#4594e1] text-[#fff] text-lg sm:text-2xl rounded-t-2xl text-center"
+            >
+              Update Profile
+            </h2>
+            <form class="p-3 sm:p-8">
+              <p class="flex flex-col w-full items-start justify-start">
+                <label for="name" class="mb-2">Update Name</label>
+                <input
+                  class="border border-[#808080] p-2 w-full placeholder:text-sm"
+                  id="updateName"
+                  type="text"
+                  placeholder="Enter the profile name"
+                />
+              </p>
+              <p class="flex flex-col w-full items-start justify-start my-8">
+                <label for="admin-email" class="mb-2">Update Email</label>
+                <input
+                  class="border border-[#808080] p-2 w-full placeholder:text-sm"
+                  id="updateEmail"
+                  type="email"
+                  placeholder="Enter category email"
+                />
+              </p>
+              <button
+                onclick="updateAdminProfile(event)"
+                class="bg-[#4594e1] py-3 px-3 text-[#fff] w-full"
+              >
+                Update
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <hr class="border-1 border-[#808080] mb-12" />
+        <div
+          class="w-full sm:w-[65%] m-auto rounded-2xl shadow-xl mb-12"
+          id="adminProfilePassword"
+        >
+          <div class="admin_password-form" id="adminPasswordForm">
+            <h2
+              class="p-5 bg-[#4594e1] text-[#fff] text-lg sm:text-2xl rounded-t-2xl text-center"
+            >
+              Update Admin Password
+            </h2>
+            <form class="p-3 sm:p-8">
+              <p class="flex flex-col w-full items-start justify-start">
+                <label for="name" class="mb-2">Enter Current Email</label>
+                <input
+                  class="border border-[#808080] p-2 w-full placeholder:text-sm"
+                  id="currentEmail"
+                  type="email"
+                  placeholder="Enter your current email"
+                />
+              </p>
+              <p class="flex flex-col w-full items-start justify-start mt-8">
+                <label for="update-password" class="mb-2">New Password</label>
+                <input
+                  class="border border-[#808080] p-2 w-full placeholder:text-sm"
+                  id="updatePassword"
+                  type="password"
+                  placeholder="Enter password"
+                />
+              </p>
+              <p class="flex flex-col w-full items-start justify-start my-8">
+                <label for="confirm-password" class="mb-2"
+                  >Confirm Password</label
+                >
+                <input
+                  class="border border-[#808080] p-2 w-full placeholder:text-sm"
+                  id="confirmUpdatePassword"
+                  type="password"
+                  placeholder="Enter password"
+                />
+              </p>
+              <button
+                onclick="updateAdminPassword(event)"
+                class="bg-[#4594e1] py-3 px-3 text-[#fff] w-full"
+              >
+                Update
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+      <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./admin.js"></script>
+  </body>
+</html>
